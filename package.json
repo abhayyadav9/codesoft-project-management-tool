@@ -2,8 +2,8 @@
     "name": "Task Management",
     "version": "1.0.0",
     "scripts": {
-      "build": "cd client && npm install && npm run build && cd ../server && npm install",
-      "start": "cd server && npm start"
+      "build": "cd frontend && npm install && npm run build && cd ../backend && npm install",
+      "start": "cd backend && npm start"
     }
   }
   
