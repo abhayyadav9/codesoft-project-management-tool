@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/", UserAPI); 
 app.use("/api", TaskAPI);
-//it will run on //localhost:5000/api/sign-in
+
 
 const PORT = 5000;
 

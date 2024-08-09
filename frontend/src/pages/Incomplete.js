@@ -3,6 +3,10 @@ import React,{useState, useEffect} from 'react'
 import Cards from '../components/Home/Cards'
 import axios from 'axios';
 
+
+const prourl="https://project-management-tool-av.onrender.com"
+
+
 const Incomplete = () => {
   const [data, setData] = useState();
   const headers = {
@@ -11,7 +15,7 @@ const Incomplete = () => {
   useEffect(()=>{
     const fetch = async()=>{
       const response = await axios.get(
-        "http://localhost:5000/api/get-incomplete-tasks",
+        `${prourl}/api/get-incomplete-tasks`,
         {headers}
       );
       setData(response.data.data);

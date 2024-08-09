@@ -2,6 +2,9 @@ import React , {useState,useEffect}from 'react'
 import Cards from '../components/Home/Cards'
 import axios from 'axios';
 
+const prourl="https://project-management-tool-av.onrender.com"
+
+
 const Important = () => {
   const [data, setData] = useState();
   const headers = {
@@ -10,7 +13,7 @@ const Important = () => {
   useEffect(()=>{
     const fetch = async()=>{
       const response = await axios.get(
-        "http://localhost:5000/api/get-imp-tasks",
+        `${prourl}/api/get-imp-tasks`,
         {headers}
       );
       setData(response.data.data);

@@ -2,6 +2,10 @@ import React,{useState, useEffect} from 'react'
 import Cards from '../components/Home/Cards'
 import axios from 'axios';
 
+
+const prourl="https://project-management-tool-av.onrender.com"
+
+
 const CompletedTasks = () => {
   const [data, setData] = useState();
   const headers = {
@@ -10,7 +14,7 @@ const CompletedTasks = () => {
   useEffect(()=>{
     const fetch = async()=>{
       const response = await axios.get(
-        "http://localhost:5000/api/get-complete-tasks",
+        `${prourl}/api/get-complete-tasks`,
         {headers}
       );
       setData(response.data.data);

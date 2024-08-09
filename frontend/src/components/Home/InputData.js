@@ -1,6 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { RxCross1 } from "react-icons/rx";
+
+
+
+const prourl="https://project-management-tool-av.onrender.com"
+
 const InputData = ({input,setInput,updateData,setUpdateData}) => {
   const [data, setData] = useState({title: "", desc: ""});
 
@@ -18,7 +23,7 @@ const InputData = ({input,setInput,updateData,setUpdateData}) => {
     if(data.title === "" || data.desc === ""){
       alert("All fields are required");
     }else{
-      await axios.post("http://localhost:5000/api/create-task" , data,{headers});
+      await axios.post("${prourl}/api/create-task" , data,{headers});
       setData({title: "", desc: ""});
       setInput("hidden")
     }
@@ -28,7 +33,7 @@ const InputData = ({input,setInput,updateData,setUpdateData}) => {
     if(data.title === "" || data.desc===""){
       alert("All fields are required");
     }else{
-      await axios.put(`http://localhost:5000/api/update-task/${updateData._id}`, data,{headers});
+      await axios.put(`${prourl}/api/update-task/${updateData._id}`, data,{headers});
       setUpdateData({
         id: "",
         title: "",

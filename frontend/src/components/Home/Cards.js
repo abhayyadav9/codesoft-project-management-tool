@@ -6,13 +6,15 @@ import { IoIosAddCircle } from "react-icons/io";
 import { FaHeart } from 'react-icons/fa';
 import axios from 'axios';
 
+
+ const prourl="https://project-management-tool-av.onrender.com"
 const Cards = ({home,setInput,data,setUpdateData}) => {
   const headers = {
     id: localStorage.getItem("id"),
   };
   const handleCompleteTask = async(id)=>{
     try{
-      await axios.put(`http://localhost:5000/api/update-completed-task/${id}`,{},{headers});
+      await axios.put(`${prourl}/api/update-completed-task/${id}`,{},{headers});
       //{} we are not sending any data, and we are only sending headers
     }catch(err){
      console.log(err);
@@ -21,7 +23,7 @@ const Cards = ({home,setInput,data,setUpdateData}) => {
 
   const handleImportant = async(id)=>{
     try{
-     await axios.put(`http://localhost:5000/api/update-imp-task/${id}`,{},{headers});
+     await axios.put(`${prourl}/api/update-imp-task/${id}`,{},{headers});
     }catch(err){
      console.log(err);
     }
@@ -34,7 +36,7 @@ const Cards = ({home,setInput,data,setUpdateData}) => {
 
   const deleteTask = async(id)=>{
     try{
-     const response =  await axios.delete(`http://localhost:5000/api/delete-task/${id}`,{headers});
+     const response =  await axios.delete(`${prourl}/api/delete-task/${id}`,{headers});
      console.log(response.data.message);
     }catch(err){
      console.log(err);

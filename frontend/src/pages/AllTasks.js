@@ -4,6 +4,10 @@ import { IoIosAddCircle } from "react-icons/io";
 import InputData from '../components/Home/InputData';
 import axios from 'axios';
 
+
+const prourl="https://project-management-tool-av.onrender.com"
+
+
 const AllTasks = () => {
     const [input, setInput] = useState("hidden");
     const [data, setData] = useState();
@@ -18,7 +22,7 @@ const AllTasks = () => {
     useEffect(()=>{
       const fetch = async()=>{
         const response = await axios.get(
-          "http://localhost:5000/api/get-all-tasks",
+          `${prourl}/api/get-all-tasks`,
           {headers}
         );
         setData(response.data.data);

@@ -9,6 +9,7 @@ import { authActions } from '../../store/auth';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const prourl="https://project-management-tool-av.onrender.com"
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const Sidebar = () => {
   const headers = {id:localStorage.getItem("id")};
   useEffect(()=>{
    const fetch = async()=>{
-   const response = await axios.get("http://localhost:5000/api/get-all-tasks", {
+   const response = await axios.get(`${prourl}/api/get-all-tasks`, {
     headers,
     });
     setData1(response.data.data);

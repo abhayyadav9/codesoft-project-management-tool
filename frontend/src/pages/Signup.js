@@ -2,6 +2,11 @@ import React,{useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
 import {useSelector} from "react-redux";
+
+
+
+const prourl="https://project-management-tool-av.onrender.com"
+
 const Signup = () => {
   const history = useNavigate();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -23,7 +28,7 @@ const Signup = () => {
       if(data.username === "" || data.email === "" || data.password === ""){
         alert("all fields are mandatory");
       }else{
-       const response = await axios.post("http://localhost:5000/api/signup", data);
+       const response = await axios.post(`${prourl}/api/signup`, data);
        setData({username:"", email:"", password:""});
         alert(response.data.message);
         history("/login");

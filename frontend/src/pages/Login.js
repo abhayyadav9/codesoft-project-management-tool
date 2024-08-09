@@ -4,6 +4,10 @@ import { useDispatch,useSelector} from 'react-redux';
 import { Link ,useNavigate} from 'react-router-dom'
 import { authActions } from '../store/auth';
 
+
+
+const prourl="https://project-management-tool-av.onrender.com"
+
 const Login = () => {
   const [data,setData] = useState({username: "", password: ""});
   const history = useNavigate();
@@ -22,7 +26,7 @@ const Login = () => {
     if(data.username === "" || data.password === ""){
       alert("all fields are mandatory");
     }else{
-     const response = await axios.post("http://localhost:5000/api/login", data);
+     const response = await axios.post(`${prourl}/api/login`, data);
      setData({username:"", password:""});
       console.log(response);
       localStorage.setItem("id", response.data.id);
