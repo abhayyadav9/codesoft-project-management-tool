@@ -24,10 +24,17 @@ const Incomplete = () => {
     fetch();
   });
   return (
-    <div>
+    <>
+    <header className={`fixed top-0 w-full bg-gray-900 text-green-600 z-8  shadow-md transition-all duration-300 `}>
+    <div className="w-full flex justify-left items-center px-4 py-2 mt-[-8px]">
+      <h1 className="text-xl font-semibold mt-4">Incomplete</h1>
+    </div>
+  </header>
+    <div className='mt-8'>
             <Cards home={"false"} data={data}/>
 
     </div>
+    </>
   )
 }
 

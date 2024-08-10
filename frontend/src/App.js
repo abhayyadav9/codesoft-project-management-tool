@@ -28,7 +28,7 @@ const App = () => {
    }
   },[])
   return (
-    <div className="bg-gray-900 text-white h-screen p-2 relative">
+    <div className="bg-gray-100 text-white h-screen p-2 relative">
     
         <Routes>
           <Route exact path='/' element={<Home />}>

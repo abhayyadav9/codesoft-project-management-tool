@@ -40,7 +40,7 @@ const Sidebar = () => {
   }, [headers]);
 
   return (
-    <div className="flex flex-col h-full p-2 space-y-4">
+    <div className="flex flex-col h-full p-4 space-y-4">
       {data1 && (
         <div className="flex flex-col items-start">
           <h2 className="text-lg font-semibold truncate w-full">{data1.username}</h2>
@@ -53,7 +53,7 @@ const Sidebar = () => {
           <Link
             to={items.link}
             key={i}
-            className="flex items-center p-2 rounded hover:bg-gray-600 transition-colors duration-300"
+            className="flex font-semibold items-center p-1 mt-12 rounded hover:bg-gray-100 transition-colors duration-300"
           >
             {items.icon} <span className="ml-2 text-sm">{items.title}</span>
           </Link>
@@ -61,7 +61,7 @@ const Sidebar = () => {
       </div>
       <div>
         <button
-          className="bg-gray-600 text-white w-full py-2 rounded hover:bg-gray-700 transition-colors duration-300"
+          className="bg-gray-600 mt-60 text-white w-full py-2 rounded hover:bg-red-500 transition-colors duration-300"
           onClick={Logout}
         >
           Log Out
