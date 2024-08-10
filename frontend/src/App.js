@@ -10,6 +10,8 @@ import Login from './pages/Login';
 import {useSelector, useDispatch} from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { authActions } from './store/auth';
+// index.js or App.js
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const navigate = useNavigate();
