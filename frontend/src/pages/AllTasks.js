@@ -42,11 +42,16 @@ const AllTasks = () => {
 
   return (
     <>
-      <header className={`fixed top-0 w-full bg-gray-900 text-green-600 z-10 shadow-md transition-all duration-300 ${input === "fixed" ? "hidden" : ""}`}>
+      <header
+        className={`border fixed top-0 w-full bg-gray-900 text-green-600 z-10 shadow-md transition-all duration-300 ${
+          input === "fixed" ? "hidden" : ""
+        }`}
+      >
         <div className="w-full flex justify-left items-center px-4 py-2 mt-[-8px]">
-          <h1 className="text-xl font-semibold mt-4">All Tasks</h1>
+          <h1 className="text-xl font-semibold mt-4 mx-8 ">All Tasks</h1>
         </div>
       </header>
+      <hr />
       <div className="w-full flex justify-end mt-10">
         <button onClick={() => setInput("fixed")}>
           <IoIosAddCircle className="text-4xl text-gray-400 hover:text-gray-100 transition-all duration-300" />

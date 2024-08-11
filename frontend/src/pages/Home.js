@@ -38,7 +38,7 @@ import Nav from "../components/Home/Nav";
 
 const Home = () => {
   return (
-    <div className="bg-gray-900 top-0 mt-[-8px] min-h-screen">
+    <div className="bg-gray-900  top-0 mt-[-8px] min-h-screen mr-3">
       {/* Navigation bar */}
       <div className="w-full border border-gray-500 rounded-xl p-4 flex flex-row justify-between md:hidden">
         <Nav />
@@ -51,7 +51,7 @@ const Home = () => {
         </div>
 
         {/* Main content area */}
-        <div className="flex-1 md:ml-[16.67%] border border-gray-500 rounded-sm p-4 overflow-auto">
+        <div className="flex-1 md:ml-[16.67%] border border-gray-500 rounded-sm  mt-8 overflow-auto">
           <Outlet />
         </div>
       </div>

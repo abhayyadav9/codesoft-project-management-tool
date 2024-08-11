@@ -73,7 +73,7 @@ const Nav = () => {
       {/* Off-canvas Menu */}
       <div className={`fixed inset-0 bg-gray-800 bg-opacity-75 transition-opacity ${showOffcanvas ? "opacity-100" : "opacity-0 pointer-events-none"}`} onClick={() => setShowOffcanvas(false)}></div>
       
-      <div className={`fixed top-0 right-0 w-64 bg-gray-800 text-white h-full p-4 transition-transform ${showOffcanvas ? "translate-x-0" : "translate-x-full"}`}>
+      <div className={`fixed top-0 right-0 w-64 bg-gray-800 text-white h-full p-4 transition-transform ${showOffcanvas ? "translate-x-0" : "translate-x-full"}`} style={{ zIndex: 51 }}>
         <button className="text-white mb-4" onClick={() => setShowOffcanvas(false)}>
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -101,7 +101,7 @@ const Nav = () => {
         </div>
         {/* Log Out Button */}
         <button
-          className="mt-auto bg-red-600 hover:bg-red-700 text-white w-full py-2 rounded transition-colors duration-300"
+          className="mt-[220px] bg-red-600 hover:bg-red-700 text-white w-full py-2 rounded transition-colors duration-300"
           onClick={Logout}
         >
           Log Out
