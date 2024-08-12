@@ -22,9 +22,9 @@ app.use("/api", TaskAPI);
 const PORT = process.env.PORT || 5000; // Use environment variable for port if available
 
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+// app.get('/', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 
 app.listen(PORT, () => {
