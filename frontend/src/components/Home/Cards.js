@@ -1,52 +1,72 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaEdit, FaHeart } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
 import axios from "axios";
+import { debounce } from "lodash";
 
 const prourl = "https://project-management-tool-av.onrender.com";
 
 const Cards = ({ home, setInput, data, setUpdateData }) => {
+  const [loading, setLoading] = useState(null); // State to track the loading state of each action
   const headers = {
     id: localStorage.getItem("id"),
   };
 
-  const handleCompleteTask = async (id) => {
-    try {
-      await axios.put(
-        `${prourl}/api/update-completed-task/${id}`,
-        {},
-        { headers }
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const handleCompleteTask = useCallback(
+    debounce(async (id) => {
+      setLoading(id); // Set loading state for the task
+      try {
+        await axios.put(
+          `${prourl}/api/update-completed-task/${id}`,
+          {},
+          { headers }
+        );
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(null); // Reset loading state after the request completes
+      }
+    }, 300),
+    [headers]
+  );
 
-  const handleImportant = async (id) => {
-    try {
-      await axios.put(`${prourl}/api/update-imp-task/${id}`, {}, { headers });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const handleImportant = useCallback(
+    debounce(async (id) => {
+      setLoading(id); // Set loading state for the task
+      try {
+        await axios.put(`${prourl}/api/update-imp-task/${id}`, {}, { headers });
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(null); // Reset loading state after the request completes
+      }
+    }, 300),
+    [headers]
+  );
 
-  const handleUpdate = (id, title, desc) => {
+  const handleUpdate = useCallback((id, title, desc) => {
     setInput("fixed");
     setUpdateData({ id, title, desc });
-  };
+  }, [setInput, setUpdateData]);
 
-  const deleteTask = async (id) => {
-    try {
-      const response = await axios.delete(`${prourl}/api/delete-task/${id}`, {
-        headers,
-      });
-      console.log(response.data.message);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const deleteTask = useCallback(
+    debounce(async (id) => {
+      setLoading(id); // Set loading state for the task
+      try {
+        const response = await axios.delete(`${prourl}/api/delete-task/${id}`, {
+          headers,
+        });
+        console.log(response.data.message);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setLoading(null); // Reset loading state after the request completes
+      }
+    }, 300),
+    [headers]
+  );
 
   return (
     <div className="grid gap-4 p-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -64,19 +84,25 @@ const Cards = ({ home, setInput, data, setUpdateData }) => {
                 {items.desc}
               </p>
             </div>
-            <div className=" mt-4 flex items-center justify-between">
+            <div className="mt-4 flex items-center justify-between">
               <button
-                className={`px-1  py-1 text-sm rounded text-white ${
+                className={`px-1 py-1 text-sm rounded text-white ${
                   items.completed ? "bg-green-400" : "bg-red-400"
-                } transition-colors duration-300`}
-                onClick={() => handleCompleteTask(items._id)}
+                } transition-colors duration-300 ${
+                  loading === items._id ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                onClick={() => !loading && handleCompleteTask(items._id)}
+                disabled={loading === items._id}
               >
-                {items.completed ? "Completed" : "Incomplete"}
+                {loading === items._id ? "Processing..." : (items.completed ? "Completed" : "Incomplete")}
               </button>
               <div className="flex space-x-2 text-white">
                 <button
-                  className="transition-transform duration-300 hover:scale-110"
-                  onClick={() => handleImportant(items._id)}
+                  className={`transition-transform duration-300 hover:scale-110 ${
+                    loading === items._id ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  onClick={() => !loading && handleImportant(items._id)}
+                  disabled={loading === items._id}
                 >
                   {items.important ? (
                     <FaHeart className="text-red-500 text-xl" />
@@ -86,17 +112,21 @@ const Cards = ({ home, setInput, data, setUpdateData }) => {
                 </button>
                 {home !== "false" && (
                   <button
-                    className="transition-transform duration-300 hover:scale-110"
-                    onClick={() =>
-                      handleUpdate(items._id, items.title, items.desc)
-                    }
+                    className={`transition-transform duration-300 hover:scale-110 ${
+                      loading === items._id ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                    onClick={() => !loading && handleUpdate(items._id, items.title, items.desc)}
+                    disabled={loading === items._id}
                   >
                     <FaEdit />
                   </button>
                 )}
                 <button
-                  className="transition-transform duration-300 hover:scale-110"
-                  onClick={() => deleteTask(items._id)}
+                  className={`transition-transform duration-300 hover:scale-110 ${
+                    loading === items._id ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  onClick={() => !loading && deleteTask(items._id)}
+                  disabled={loading === items._id}
                 >
                   <MdDelete />
                 </button>
